@@ -1,0 +1,21 @@
+#!/bin/sh
+
+cat > /etc/default/gunicorn <<EOF
+#!/bin/sh
+
+export NAME=${NAME}
+export DESC=${DESC}
+export PROJECTPATH=${PROJECTPATH}
+export USER=${USER}
+export APPNAME=${APPNAME}
+export APPMODULE=${APPMODULE}
+export PYTHONPATH=${PYTHONPATH}
+export CONFFILE=${CONFFILE}
+export DAEMON=${DAEMON}
+export PIDFILE=${PIDFILE}
+export SLEEPSEC=${SLEEPSEC}
+export UPGRADEWAITLOOPS=${UPGRADEWAITLOOPS}
+export CHECKSLEEP=${CHECKSLEEP}
+export GUNICORN_BIND=${GUNICORN_BIND}
+
+EOF
