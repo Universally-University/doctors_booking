@@ -2,6 +2,7 @@
 
 ## Folder Structure
 
+```
 .
 ├── docker-compose.yaml     `<- Container docker compose for testing`
 ├── Dockerfile              `<- Container Dockerfile for building`
@@ -53,8 +54,8 @@
 └── scripts                  `<- Container Startup Scripts`
     ├── 40-variables.sh
     └── 50-run.sh
-
 16 directories, 47 files
+```
 
 ## Test Container
 
