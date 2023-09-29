@@ -41,6 +41,7 @@ DAEMON_ARGS="-c $CONFFILE --pythonpath $PYTHONPATH $APPMODULE"
 
 case "$1" in
   start)
+        manage.py collectstatic
         log_daemon_msg "Starting $NAME daemon" "$APPNAME"
         start-stop-daemon --start --quiet --chdir $PROJECTPATH --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_ARGS
         log_end_msg $?

@@ -2,7 +2,7 @@ services:
   frontend:
     build:
       context: .
-    container_name: doctors_booking
+    container_name: doctors_booking_testing
     ports:
       - "8000:80"
     volumes:
@@ -14,11 +14,6 @@ services:
     environment:
       - NAME='Room Booking' # Pretty Name
       - APPNAME=doctors_booking # Django project name. The folder name that contains the wsgi.py file.
-      # - DESC=
       - PROJECTPATH=/home/www-data/app
-      # - PYTHONPATH=/home/www-data/app/.venv/bin # Path to python install.
-      # - CONFFILE=/etc/gunicorn/gunicorn.conf.py # Path to gunicorn configuration file.
-      # - GUNICORN_BIND='["unix:/tmp/gunicorn.sock"]' # Bind address for Gunicorn. *NOTE* change the nginx.conf file to match. 
       - PIDFILE=/tmp/gunicorn.pid
     restart: unless-stopped
-
