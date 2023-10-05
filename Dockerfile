@@ -49,8 +49,6 @@ ENV PATH=/docker-entrypoint.d:/home/www-data/app:/home/www-data/app/.venv/bin:${
 RUN ln -s /etc/gunicorn/gunicorn.sh /etc/init.d/gunicorn
 
 RUN <<EOF
-mkdir templates
-mkdir static
 mkdir /var/log/gunicorn
 chown -R www-data:www-data /var/log/gunicorn
 mv /home/www-data/app/build/static/* /var/www/static
