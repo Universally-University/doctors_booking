@@ -3,6 +3,8 @@
 ## Folder Structure
 
 ```
+EDIT - Test Branch Push
+
 .
 ├── docker-compose.yaml     `<- Container docker compose for testing`
 ├── Dockerfile              `<- Container Dockerfile for building`
@@ -59,10 +61,10 @@
 
 ## Test Container
 
-1. Navigate to folder.
+1.  Navigate to folder.
 
-2. Run Docker Compose File.
+2.  Run Docker Compose File.
 
-    ```bash
-    docker compose up
-    ```
+        ```bash
+        docker compose up
+        ```
