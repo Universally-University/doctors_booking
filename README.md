@@ -65,6 +65,6 @@ EDIT - Test Branch Push
 
 2.  Run Docker Compose File.
 
-        ```bash
-        docker compose up
-        ```
+```bash
+docker compose up
+```
