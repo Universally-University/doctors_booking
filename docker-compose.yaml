@@ -6,11 +6,11 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./doctors_booking/static:/home/www-data/app/static:ro
-      - ./doctors_booking/api:/home/www-data/app/api:ro
-      - ./doctors_booking/frontend:/home/www-data/app/frontend:ro
-      - ./doctors_booking/doctors_booking:/home/www-data/app/doctors_booking:ro
-      - ./doctors_booking/templates:/home/www-data/app/templates:ro
+      - ./doctors_booking/static:/home/www-data/app/static
+      - ./doctors_booking/api:/home/www-data/app/api
+      - ./doctors_booking/frontend:/home/www-data/app/frontend
+      - ./doctors_booking/doctors_booking:/home/www-data/app/doctors_booking
+      - ./doctors_booking/templates:/home/www-data/app/templates
     environment:
       - NAME='Room Booking' # Pretty Name
       - APPNAME=doctors_booking # Django project name. The folder name that contains the wsgi.py file.
