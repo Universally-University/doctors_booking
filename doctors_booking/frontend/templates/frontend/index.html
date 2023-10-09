@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Appointment booking</title>
+        <link rel="stylesheet" href="{% static 'frontend/css/main.css' %}">
+        <script src="{% static 'frontend/js/jquery-3.7.1.js' %}"></script>
+        <script src="{% static 'frontend/js/index.js' %}"></script>
+    </head>
+
+    <body class="bookingpage">
+        <div class="justifycent smol med">
+        <div class="contcont">
+                <div class="title contsect">
+                    <H1>Book an appointment</H1>
+                </div>
+                <div class="pdoc contsect">
+                    <h2>Select doctor:</h2>
+                    <select name="doctors" id="doctors" class="doctorselect">
+                        <option value="default">Select Doctor</option>
+                    </select>
+                </div>
+                <div class="info contsect">
+                    <h2>Enter your information:</h2>
+                    <div class="infoform">
+                        <div class="inputele">
+                            <input type="text" id="fname" name="fname" placeholder="First Name"  class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <input type="text" id="lname" name="lname" placeholder="Last Name" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <input type="text" id="dob" name="dob" placeholder="Date of Birth" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <input type="text" id="email" name="email" placeholder="Email" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                        <input type="text" id="phnum" name="phnum" placeholder="Phone Number" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <input type="text" id="address" name="address" placeholder="Address" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <input type="text" id="memid" name="memid" placeholder="Member ID" class="inputbox">
+                        </div>
+                        <div class="inputele">
+                            <label class="inputlabel">Male:</label>
+                            <input type="radio" id="male" name="gender" value="M" class="radioele">
+                            <label class="inputlabel">Female:</label>
+                            <input type="radio" id="female" name="gender" value="F" class="radioele">
+                        </div>
+                        <div class="inputele">
+                            <label class="inputlabel">New Patient:</label>
+                            <input type="radio" id="new" name="newold" value=false class="radioele">
+                            <label class="inputlabel">Returning Patient:</label>
+                            <input type="radio" id="old" name="newold" value=true class="radioele">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment contsect">
+                    <h2>Select Appointment Time:</h2>
+
+                    
+                </div>
+                <div class="spacetaker"></div>
+                <div class="submitsect contsect">
+                    <button class="submitbtn" id="submitbutton">Book Appointment</button>
+                </div>
+        </div>
+        </div>
+        <!--<div>
+            {% if message %}
+                {{message}}
+            {% endif %}
+            {% if patient %}
+                {{patient.first_name}}
+            {% endif %}
+        </div>-->
+    </body>
+</html>
