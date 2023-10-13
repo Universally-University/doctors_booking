@@ -1,0 +1,88 @@
+*{
+    box-sizing: border-box;
+}
+
+.bookingpage{
+    background-color: #282b30;
+    background-size: cover;
+    font-size: 16px;
+    color: #c3baba;
+}
+
+@media (max-width: 1000px) {
+.smol {
+    flex: 0 0 auto;
+    width: 100%;
+}}
+@media (min-width: 1000px){
+    .med {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+.justifycent{
+    justify-content: center;
+    align-self: center;
+    position: relative;
+    background-color:#393e4c;
+    color: #c3baba;
+    left:50%;
+    height: 90%;
+    transform:translate(-50%,0);
+    margin-top: 1.5%;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.contcont{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title{
+    text-align: center;
+}
+
+.contsect{
+    margin-bottom: 7.5%;
+}
+
+.doctorselect{
+    margin-left: 10%;
+    min-width: 20%;
+}
+
+.submitsect{
+    text-align: right;
+}
+
+.infoform{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.inputlabel{
+    margin-left: 5%;
+}
+
+.inputbox{
+	width: 90%;
+    margin-left: 5%;
+	border-bottom: 1px solid #888;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-radius: 0;
+	padding: 10px 0px;
+	background-color:#393e4c;
+    color:#c3baba;
+}
+
+.radioele{
+    margin-top: 10px;
+}
+
+.inputele{
+    text-align: left;
+}
