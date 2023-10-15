@@ -1,25 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from api.models import Patient, Doctor, Appointment
 from icecream import ic
+from django.http import HttpRequest,HttpResponse
+from django.template import loader
 
 # Create your views here.
-def index(request):
-
+def index(request: HttpRequest):
+    mem_id=request.GET.get("member", False)
+    if mem_id:
+        request.COOKIES["member_ID"] = mem_id
     context={
-        # "message":"Hello Jason"
+        "member_ID": request.COOKIES.get("member_ID")
     }
-    return render(request, "frontend/index.html", context=context)
-
-def patient_view(request, patientid):
-    patient = Patient.objects.get_object_or_404(id=patientid)
-    ic(patient)
-    context={
-        "patient":patient
-    }
-    return render(request, "frontend/index.html", context=context)
-def doctor_view(request, patientid):
-    doctor = Doctor.objects.get_object_or_404(patientid)
-    context={
-        # "message":"Hello Jason"
-    }
-    return render(request, "frontend/index.html", context=context)
+    template = loader.get_template("frontend/index.html")
+    response = HttpResponse(template.render(context, request))
+    if mem_id:
+        response.set_cookie("member_ID", mem_id)
+    return response
