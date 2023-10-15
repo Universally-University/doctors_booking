@@ -405,6 +405,8 @@ $(document).ready(function(){
                     member_id:LIMemID
                 },
                 success: function(response){
+                    if(response.length > 0)
+                    {
                     let myid = response[0].id;
                     $.ajax({
                         url: '/wellbeing/api/appointment',
@@ -433,6 +435,7 @@ $(document).ready(function(){
                             });
                         }
                     });
+                }
                 }
             });
         }
