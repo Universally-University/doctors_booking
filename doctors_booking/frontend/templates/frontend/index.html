@@ -7,23 +7,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Appointment booking</title>
         <link rel="stylesheet" href="{% static 'frontend/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/navbar.css' %}">
         <script src="{% static 'frontend/js/jquery-3.7.1.js' %}"></script>
         <script src="{% static 'frontend/js/index.js' %}"></script>
     </head>
 
     <body class="bookingpage">
+
+        <div class="navbar">
+            <div class="navbar-container">
+                <div class="dropdown">
+                    <button class="dropbtn">Enrollment
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/enroll/card/">New ID Card</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Library
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/library/">Book a Room</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Wellbeing
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/wellbeing/">Book an Appoinment</a>
+                    </div>
+                </div>
+                {% if member_ID %}
+                <div><a href="/account/logout/" class="split">logout</a></div>
+                <div><a class="split">Hello {{ member_ID }}</a></div>
+                {% else %}
+                <div><a href="/account/login/" class="split">login</a></div>
+                {% endif %}
+                <!-- {{ member_ID }} ?member=1001200-->
+            </div>
+        </div>
+        <div id="page_content">
         <div class="justifycent smol med">
         <div class="contcont">
                 <div class="title contsect">
                     <H1>Book an appointment</H1>
                 </div>
+                <div class="uppernotifysect contsect" id="uppernotifysect" hidden>
+                    <p id="uppernotifypara" class="uppernotifypara"></p>
+                </div>
+
                 <div class="pdoc contsect">
                     <h2>Select doctor:</h2>
                     <select name="doctors" id="doctors" class="doctorselect">
                         <option value="default">Select Doctor</option>
                     </select>
                 </div>
-                <div class="info contsect">
+                <div class="info contsect" id="infosect" hidden>
                     <h2>Enter your information:</h2>
                     <div class="infoform">
                         <div class="inputele">
@@ -62,14 +104,183 @@
                     </div>
                 </div>
 
-                <div class="appointment contsect">
+                <div class="appointment contsect" id="appointsect" hidden>
                     <h2>Select Appointment Time:</h2>
+                    <div id="tablediv" class="tablediv">
+                        <table id="apptable" class="apptable">
+                            <!--<thead id="apptablehead" class="apptablehead">
+
+                            </thead>
+                            <tbody id="apptablebody" class="apptablebody">
+
+                            </tbody>-->
+                            <tr id="headrow">
+                                <th id="backcell"><button class="bckbutton navbutton" id="backbutton" disabled>Back</button></th>
+                                <th id="header1">Day 1</th>
+                                <th id="header2">Day 2</th>
+                                <th id="header3">Day 3</th>
+                                <th id="header4">Day 4</th>
+                                <th id="header5">Day 5</th>
+                                <th id="header6">Day 6</th>
+                                <th id="header7">Day 7</th>
+                                <th id="fwdcell"><button class="fwdbutton navbutton" id="forwardbutton">Forward</button></th>
+                            </tr>
+
+                            <tr id="row0">
+                                <th id="row0h0">9:30</th>
+                                <td id="row0h1"><button class="tablebutton availablebutton" id="r0h1"></button></th>
+                                <td id="row0h2"><button class="tablebutton availablebutton" id="r0h2"></button></th>
+                                <td id="row0h3"><button class="tablebutton availablebutton" id="r0h3"></button></th>
+                                <td id="row0h4"><button class="tablebutton availablebutton" id="r0h4"></button></th>
+                                <td id="row0h5"><button class="tablebutton availablebutton" id="r0h5"></button></th>
+                                <td id="row0h6"><button class="tablebutton availablebutton" id="r0h6"></button></th>
+                                <td id="row0h7"><button class="tablebutton availablebutton" id="r0h7"></button></th>
+                            </tr>
+
+                            <tr id="row1">
+                                <th id="row1h0">10:00</th>
+                                <td id="row1h1"><button class="tablebutton availablebutton" id="r1h1"></button></th>
+                                <td id="row1h2"><button class="tablebutton availablebutton" id="r1h2"></button></th>
+                                <td id="row1h3"><button class="tablebutton availablebutton" id="r1h3"></button></th>
+                                <td id="row1h4"><button class="tablebutton availablebutton" id="r1h4"></button></th>
+                                <td id="row1h5"><button class="tablebutton availablebutton" id="r1h5"></button></th>
+                                <td id="row1h6"><button class="tablebutton availablebutton" id="r1h6"></button></th>
+                                <td id="row1h7"><button class="tablebutton availablebutton" id="r1h7"></button></th>
+                            </tr>
+
+                            <tr id="row2">
+                                <th id="row2h0">10:30</th>
+                                <td id="row2h1"><button class="tablebutton availablebutton" id="r2h1"></button></th>
+                                <td id="row2h2"><button class="tablebutton availablebutton" id="r2h2"></button></th>
+                                <td id="row2h3"><button class="tablebutton availablebutton" id="r2h3"></button></th>
+                                <td id="row2h4"><button class="tablebutton availablebutton" id="r2h4"></button></th>
+                                <td id="row2h5"><button class="tablebutton availablebutton" id="r2h5"></button></th>
+                                <td id="row2h6"><button class="tablebutton availablebutton" id="r2h6"></button></th>
+                                <td id="row2h7"><button class="tablebutton availablebutton" id="r2h7"></button></th>
+                            </tr>
+
+                            <tr id="row3">
+                                <th id="row3h0">11:00</th>
+                                <td id="row3h1"><button class="tablebutton availablebutton" id="r3h1"></button></th>
+                                <td id="row3h2"><button class="tablebutton availablebutton" id="r3h2"></button></th>
+                                <td id="row3h3"><button class="tablebutton availablebutton" id="r3h3"></button></th>
+                                <td id="row3h4"><button class="tablebutton availablebutton" id="r3h4"></button></th>
+                                <td id="row3h5"><button class="tablebutton availablebutton" id="r3h5"></button></th>
+                                <td id="row3h6"><button class="tablebutton availablebutton" id="r3h6"></button></th>
+                                <td id="row3h7"><button class="tablebutton availablebutton" id="r3h7"></button></th>
+                            </tr>
+
+                            <tr id="row4">
+                                <th id="row4h0">11:30</th>
+                                <td id="row4h1"><button class="tablebutton availablebutton" id="r4h1"></button></th>
+                                <td id="row4h2"><button class="tablebutton availablebutton" id="r4h2"></button></th>
+                                <td id="row4h3"><button class="tablebutton availablebutton" id="r4h3"></button></th>
+                                <td id="row4h4"><button class="tablebutton availablebutton" id="r4h4"></button></th>
+                                <td id="row4h5"><button class="tablebutton availablebutton" id="r4h5"></button></th>
+                                <td id="row4h6"><button class="tablebutton availablebutton" id="r4h6"></button></th>
+                                <td id="row4h7"><button class="tablebutton availablebutton" id="r4h7"></button></th>
+                            </tr>
+
+                            <tr id="row5">
+                                <th id="row5h0">12:00</th>
+                                <td id="row5h1"><button class="tablebutton availablebutton" id="r5h1"></button></th>
+                                <td id="row5h2"><button class="tablebutton availablebutton" id="r5h2"></button></th>
+                                <td id="row5h3"><button class="tablebutton availablebutton" id="r5h3"></button></th>
+                                <td id="row5h4"><button class="tablebutton availablebutton" id="r5h4"></button></th>
+                                <td id="row5h5"><button class="tablebutton availablebutton" id="r5h5"></button></th>
+                                <td id="row5h6"><button class="tablebutton availablebutton" id="r5h6"></button></th>
+                                <td id="row5h7"><button class="tablebutton availablebutton" id="r5h7"></button></th>
+                            </tr>
+
+                            <tr id="row6">
+                                <th id="row6h0">12:30</th>
+                                <td id="row6h1"><button class="tablebutton availablebutton" id="r6h1"></button></th>
+                                <td id="row6h2"><button class="tablebutton availablebutton" id="r6h2"></button></th>
+                                <td id="row6h3"><button class="tablebutton availablebutton" id="r6h3"></button></th>
+                                <td id="row6h4"><button class="tablebutton availablebutton" id="r6h4"></button></th>
+                                <td id="row6h5"><button class="tablebutton availablebutton" id="r6h5"></button></th>
+                                <td id="row6h6"><button class="tablebutton availablebutton" id="r6h6"></button></th>
+                                <td id="row6h7"><button class="tablebutton availablebutton" id="r6h7"></button></th>
+                            </tr>
+
+                            <tr id="row7">
+                                <th id="row7h0">1:00</th>
+                                <td id="row7h1"><button class="tablebutton availablebutton" id="r7h1"></button></th>
+                                <td id="row7h2"><button class="tablebutton availablebutton" id="r7h2"></button></th>
+                                <td id="row7h3"><button class="tablebutton availablebutton" id="r7h3"></button></th>
+                                <td id="row7h4"><button class="tablebutton availablebutton" id="r7h4"></button></th>
+                                <td id="row7h5"><button class="tablebutton availablebutton" id="r7h5"></button></th>
+                                <td id="row7h6"><button class="tablebutton availablebutton" id="r7h6"></button></th>
+                                <td id="row7h7"><button class="tablebutton availablebutton" id="r7h7"></button></th>
+                            </tr>
+
+                            <tr id="row8">
+                                <th id="row8h0">1:30</th>
+                                <td id="row8h1"><button class="tablebutton availablebutton" id="r8h1"></button></th>
+                                <td id="row8h2"><button class="tablebutton availablebutton" id="r8h2"></button></th>
+                                <td id="row8h3"><button class="tablebutton availablebutton" id="r8h3"></button></th>
+                                <td id="row8h4"><button class="tablebutton availablebutton" id="r8h4"></button></th>
+                                <td id="row8h5"><button class="tablebutton availablebutton" id="r8h5"></button></th>
+                                <td id="row8h6"><button class="tablebutton availablebutton" id="r8h6"></button></th>
+                                <td id="row8h7"><button class="tablebutton availablebutton" id="r8h7"></button></th>
+                            </tr>
+
+                            <tr id="row9">
+                                <th id="row9h0">2:00</th>
+                                <td id="row9h1"><button class="tablebutton availablebutton" id="r9h1"></button></th>
+                                <td id="row9h2"><button class="tablebutton availablebutton" id="r9h2"></button></th>
+                                <td id="row9h3"><button class="tablebutton availablebutton" id="r9h3"></button></th>
+                                <td id="row9h4"><button class="tablebutton availablebutton" id="r9h4"></button></th>
+                                <td id="row9h5"><button class="tablebutton availablebutton" id="r9h5"></button></th>
+                                <td id="row9h6"><button class="tablebutton availablebutton" id="r9h6"></button></th>
+                                <td id="row9h7"><button class="tablebutton availablebutton" id="r9h7"></button></th>
+                            </tr>
+
+                            <tr id="row10">
+                                <th id="row10h0">2:30</th>
+                                <td id="row10h1"><button class="tablebutton availablebutton" id="r10h1"></button></th>
+                                <td id="row10h2"><button class="tablebutton availablebutton" id="r10h2"></button></th>
+                                <td id="row10h3"><button class="tablebutton availablebutton" id="r10h3"></button></th>
+                                <td id="row10h4"><button class="tablebutton availablebutton" id="r10h4"></button></th>
+                                <td id="row10h5"><button class="tablebutton availablebutton" id="r10h5"></button></th>
+                                <td id="row10h6"><button class="tablebutton availablebutton" id="r10h6"></button></th>
+                                <td id="row10h7"><button class="tablebutton availablebutton" id="r10h7"></button></th>
+                            </tr>
+
+                            <tr id="row11">
+                                <th id="row11h0">3:00</th>
+                                <td id="row11h1"><button class="tablebutton availablebutton" id="r11h1"></button></th>
+                                <td id="row11h2"><button class="tablebutton availablebutton" id="r11h2"></button></th>
+                                <td id="row11h3"><button class="tablebutton availablebutton" id="r11h3"></button></th>
+                                <td id="row11h4"><button class="tablebutton availablebutton" id="r11h4"></button></th>
+                                <td id="row11h5"><button class="tablebutton availablebutton" id="r11h5"></button></th>
+                                <td id="row11h6"><button class="tablebutton availablebutton" id="r11h6"></button></th>
+                                <td id="row11h7"><button class="tablebutton availablebutton" id="r11h7"></button></th>
+                            </tr>
+
+                            <tr id="row12">
+                                <th id="row12h0">3:30</th>
+                                <th id="row12h1"><button class="tablebutton availablebutton" id="r12h1"></button></th>
+                                <th id="row12h2"><button class="tablebutton availablebutton" id="r12h2"></button></th>
+                                <th id="row12h3"><button class="tablebutton availablebutton" id="r12h3"></button></th>
+                                <th id="row12h4"><button class="tablebutton availablebutton" id="r12h4"></button></th>
+                                <th id="row12h5"><button class="tablebutton availablebutton" id="r12h5"></button></th>
+                                <th id="row12h6"><button class="tablebutton availablebutton" id="r12h6"></button></th>
+                                <th id="row12h7"><button class="tablebutton availablebutton" id="r12h7"></button></th>
+                            </tr>
+
+                        </table>
+
+                    </div>
 
                     
                 </div>
                 <div class="spacetaker"></div>
-                <div class="submitsect contsect">
+                <div class="submitsect contsect" id="submitsect" hidden>
                     <button class="submitbtn" id="submitbutton">Book Appointment</button>
+                </div>
+                <div class="notifysect contsect" hidden>
+                    <p id="notifypara" class="notifypara"></p>
                 </div>
         </div>
         </div>
@@ -81,5 +292,6 @@
                 {{patient.first_name}}
             {% endif %}
         </div>-->
+    </div>
     </body>
 </html>

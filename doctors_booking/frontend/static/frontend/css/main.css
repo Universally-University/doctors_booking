@@ -9,15 +9,16 @@
     color: #c3baba;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
 .smol {
     flex: 0 0 auto;
     width: 100%;
 }}
-@media (min-width: 1000px){
+@media (min-width: 1024px){
     .med {
+
         flex: 0 0 auto;
-        width: 50%;
+        width: 1024px;
     }
 }
 
@@ -85,4 +86,63 @@
 
 .inputele{
     text-align: left;
+}
+
+th, td{
+    width: 80px;
+    height: 20px;
+    padding-top: 10px;
+}
+
+.tablebutton{
+    width: 90px;
+    height: 40px;
+}
+
+.disabledbutton{
+    background-color: red;
+}
+
+.availablebutton{
+    background-color: green;
+}
+
+.SelectedButton{
+    background-color: blue;
+}
+
+.apptable{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notifysect{
+    border: 3px dashed rgba(9, 163, 9, 0.438);
+    background-color: #343841;
+    width: 200px;
+    height: 50px;
+    align-content: center;
+    text-justify: center;
+}
+
+.notifypara{
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+
+.uppernotifysect{
+    border: 3px dashed rgba(9, 163, 9, 0.438);
+    background-color: #343841;
+    width: 100%;
+    height: 50px;
+    align-content: center;
+    text-justify: center;
+}
+
+.uppernotifypara{
+    text-align: center;
+    align-content: center;
+    color: white;
 }

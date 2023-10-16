@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get(
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+SERVICE_NAME = "wellbeing"
 
 # Application definition
 INSTALLED_APPS = [

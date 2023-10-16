@@ -15,9 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import include
-from django.urls import path
+from django.urls import path, re_path
+from django.conf import settings
+
+service_name = settings.SERVICE_NAME
 
 urlpatterns = [
-    path("api/", include("api.urls")),
-    path("", include("frontend.urls")),
+    re_path(rf"^(?:{service_name}\/)?api\/", include("api.urls")),
+    re_path(rf"^(?:{service_name}\/)?", include("frontend.urls")),
 ]
+"""
+
+^(?:{service_name}\/)?api\/
+
+"""
