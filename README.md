@@ -2,7 +2,7 @@
 
 ## Folder Structure
 
-```
+```text
 .
 ├── docker-compose.yaml     `<- Container docker compose for testing`
 ├── Dockerfile              `<- Container Dockerfile for building`
