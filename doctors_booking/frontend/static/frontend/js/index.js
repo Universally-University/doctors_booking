@@ -270,9 +270,13 @@ $(document).ready(function(){
             data:AppInfo,
             success: function(response)
             {
-                //console.log("Appointment booked!");
+                console.log("Appointment booked!");
                 $('#notifypara').text("Appointment booked!");
                 $('#notifysect').fadeIn();
+                $('#appointsect').fadeOut();
+                $('#infosect').fadeOut();
+                $('#submitsect').fadeOut();
+                GetNextAppointment()
             }
         });
     }
